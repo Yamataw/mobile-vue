@@ -1,25 +1,21 @@
-<template>
-  <HelloWorld msg="Welcome to Your Vue.js App"/>
 
-    <h1 class="text-3xl font-bold underline">
-    Hello world!
-  </h1>
-</template>
-<style>
-  @import '../public/style.css';
-</style>
-<script>
+<script setup>
+//import NotFound from "@/components/NotFound.vue";
+//import HomePage from "@/components/HomePage.vue";
+import router from "./router";
+import AppBar from "@/components/AppBar.vue";
+router.go('home')
+//import axios from 'axios'
 
-/*import HelloWorld from './components/HelloWorld.vue'
-
-export default {
-  name: 'App',
-  components: {
-    HelloWorld
-  }
-}*/
 </script>
+<template>
+  <router-view/>
+  <AppBar/>
+
+</template>
 
 <style>
 
 </style>
+
+
