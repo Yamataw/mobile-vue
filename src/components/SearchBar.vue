@@ -29,15 +29,14 @@
         </div>
       </div>
     </form>
-    <div class="center mt-5 mx-12 mb-10 transition duration-500 ease-in-out transform bg-cyan-900 rounded-lg hover:scale-105 cursor-pointer border flex flex-col justify-center items-center text-center p-6 ">
+    <div
+        class="text-white  center mt-5 mx-12 mb-10 transition duration-500 ease-in-out transform bg-cyan-900 rounded-lg hover:scale-105 cursor-pointer border flex flex-col justify-center items-center text-center p-6 ">
       <div class="text-3xl font-bold text-gray-900 mb-6">{{ meteo_searched.city }}</div>
-      <div class="text-md font-bold flex flex-col text-gray-900"><span class="uppercase">{{
+      <div class="text-md font-bold flex flex-col text-white"><span class="uppercase">{{
           meteo_searched.time
         }}</span>
         <span class="font-normal text-gray-700 text-sm"></span></div>
-      <div class="w-32 h-32 flex items-center justify-center">
-        <div class="text-3xl font-bold text-gray-900 mb-6">{{ meteo_searched.weathercode }}</div>
-      </div>
+        <img :src=image alt="meteo icon" class="w-48">
       <div class="text-3xl font-bold text-gray-900 mb-6">{{ meteo_searched.temperature }}</div>
 
     </div>
@@ -53,7 +52,7 @@ export default {
   data() {
 
     return {
-
+      image : "/icons/null.svg",
       cities: [],
       meteo_searched: []
     }
@@ -88,6 +87,51 @@ export default {
       }
     },
 
+
+    weather(code) {
+      let img_pth = "/icons/";
+      console.log(code);
+      if ([0].includes(code)) {
+        console.log(code);
+        img_pth += "0.svg";
+      } else if ([1, 2, 3].includes(code)) {
+        console.log(code);
+        img_pth += "123.svg";
+      } else if ([51, 53, 55].includes(code)) {
+        console.log(code);
+        img_pth += "515355.svg";
+      } else if ([56, 57].includes(code)) {
+        console.log(code);
+        img_pth += "5657.svg";
+      } else if ([61, 63, 65].includes(code)) {
+        console.log(code);
+        img_pth += "616365.svg";
+      } else if ([66, 67].includes(code)) {
+        console.log(code);
+        img_pth += "6667.svg";
+      } else if ([71, 73, 75].includes(code)) {
+        console.log(code);
+        img_pth += "717375.svg";
+      } else if ([77].includes(code)) {
+        console.log(code);
+        img_pth += "77.svg";
+      } else if ([80, 81, 82].includes(code)) {
+        console.log(code);
+        img_pth += "808182.svg";
+      } else if ([85, 86].includes(code)) {
+        console.log(code);
+        img_pth += "8586.svg";
+      } else if ([95].includes(code)) {
+        console.log(code);
+        img_pth += "95.svg";
+      } else if ([96, 99].includes(code)) {
+        console.log(code);
+        console.log("9699.svg")
+      }
+      console.log(img_pth);
+      return img_pth
+    },
+
     search() {
       var text = document.getElementById("default-search").value;
       this.cities.forEach(value => {
@@ -100,9 +144,10 @@ export default {
               .then(response => response.json())
               .then(result => {
                 this.meteo_searched = result["current_weather"];
-                console.log(this.meteo_searched);
+
                 this.meteo_searched.city = value.name;
-                this.meteo_searched.temperature = this.meteo_searched.temperature + " º"
+                this.meteo_searched.temperature = this.meteo_searched.temperature + " Cº"
+                this.image = this.weather(this.meteo_searched.weathercode)
               })
               .catch(error => console.log('error', error));
 
