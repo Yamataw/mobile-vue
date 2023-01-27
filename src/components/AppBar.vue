@@ -1,7 +1,8 @@
 <template>
   <nav class="">
-    <router-link to="/home" >HomePage</router-link> |
-    <router-link to="/">NotFound</router-link>
+    <router-link to="/" >HomePage</router-link> |
+    <router-link to="/">NotFound</router-link> |
+    <router-link to="/search">SearchBar</router-link>
   </nav>
 
 </template>
