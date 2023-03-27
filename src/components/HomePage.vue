@@ -5,6 +5,9 @@
     <header><h1>Mon site web</h1></header>
     <footer>Made with Vue</footer>
   </div>
-
+  <BottomNav></BottomNav>
 
 </template>
+<script setup>
+import BottomNav from "@/components/BottomNav.vue";
+</script>
